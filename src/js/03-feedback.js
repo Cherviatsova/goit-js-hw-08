@@ -40,11 +40,14 @@ populateTextarea();
 
 function onFormSubmit(evt) {
   evt.preventDefault();
-  evt.currentTarget.reset();
+  const formElements = evt.currentTarget;
+  const email = formElements.email.value;
+  const message = formElements.message.value;
 
-  if (localStorage.getItem(LOCALSTORAGE_KEY)) {
-    console.log(localStorage.getItem(LOCALSTORAGE_KEY));
+  if (email === '' || message === '') {
+    return;
   }
 
+  evt.currentTarget.reset();
   localStorage.removeItem(LOCALSTORAGE_KEY);
 }
